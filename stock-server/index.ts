@@ -2,9 +2,9 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 
-import { SERVER_PORT } from './global/environmnent';
-import Server from './models/app/server.class';
-import router from './routes/routes';
+import { SERVER_PORT } from './src/global/environmnent';
+import Server from './src/models/app/server.class';
+import router from './src/routes/routes';
 
 /** APP variables */
 const server = Server.instance;
