@@ -1,1 +1,36 @@
-<p>card works!</p>
+<mat-card class="report-card ms-2 me-2">
+    <mat-card-header>
+        <span class="report-index">{{_index + 1}}</span>
+        <img [src]="reportImg" [alt]="_report.name">
+    </mat-card-header>
+    <mat-card-content>
+        <div class="report-desc mt-3">
+            <p class="report-desc-code">{{_report.code}}</p>
+            <p class="report-desc-name">{{_report.name}}</p>
+        </div>
+        <div class="report-price mt-4 mb-3">
+            {{_report.price}}
+        </div>
+        <div class="report-graph">
+
+        </div>
+        <mat-divider class="divider"></mat-divider>
+        <div class="report-stock mt-4">
+            <p>
+                <span class="stock-percent me-2">{{_report.stockout_rate | percent: '2.1'}}</span>
+                <span class="stock-title">STOCKOUT</span>
+            </p>
+            <mat-progress-bar mode="determinate" value="{{_report.stockout_rate * 100}}"></mat-progress-bar>
+        </div>
+        <mat-divider class="divider"></mat-divider>
+        <div class="report-coverage mt-3">
+            <ng-container *ngIf="_report.wh_coverage < 0.50; else good">
+                <span class="text-danger"><strong>Very Low</strong></span>
+            </ng-container>
+            <ng-template #good>
+                <span class="text-success"><strong>Good</strong></span>
+            </ng-template>
+            <p class="title-coverage">WH COVERAGE</p>
+        </div>
+    </mat-card-content>
+</mat-card>

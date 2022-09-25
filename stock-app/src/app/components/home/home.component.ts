@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Report } from 'src/app/models/Report';
+import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  _reports: Report[] = [];
+
+  constructor(private _reportsService: ReportsService) { }
 
   ngOnInit(): void {
+    this._reportsService.get().subscribe(resp => {
+      this._reports = resp;
+    });
   }
 
 }
