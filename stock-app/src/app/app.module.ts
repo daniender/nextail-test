@@ -11,6 +11,7 @@ import { SharedModule } from './modules/shared.module';
 import { MaterialModule } from './modules/material.module';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
+import { NgChartsModule } from 'ng2-charts';
 
 const socketConfig: SocketIoConfig = { url: environment.socketUrl, options: {}};
 
@@ -22,6 +23,7 @@ const socketConfig: SocketIoConfig = { url: environment.socketUrl, options: {}};
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    NgChartsModule,
     ComponentsModule,
     HttpClientModule,
     LayoutsModule,
