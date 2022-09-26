@@ -9,6 +9,10 @@ import { ComponentsModule } from './modules/components.module';
 import { LayoutsModule } from './modules/layouts.module';
 import { SharedModule } from './modules/shared.module';
 import { MaterialModule } from './modules/material.module';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+
+const socketConfig: SocketIoConfig = { url: environment.socketUrl, options: {}};
 
 @NgModule({
   declarations: [
@@ -23,8 +27,10 @@ import { MaterialModule } from './modules/material.module';
     LayoutsModule,
     MaterialModule,
     SharedModule,
+    SocketIoModule.forRoot(socketConfig)
   ],
-  providers: [],
+  providers: [
+  ],
   exports: [
     ComponentsModule,
     LayoutsModule,

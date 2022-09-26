@@ -8,6 +8,11 @@
    margin-bottom: 5vh;
 }
 
+.report-card-header {
+   display: flex;
+   align-items: stretch;
+}
+
 .report-index {
    border: 1px solid #a9c9cd;
    border-radius: 5px;
@@ -58,4 +63,29 @@
 
 .report-coverage {
    float: right;
+}
+
+.completed-overlay {
+   visibility: hidden;
+   position: absolute;
+   left: 0;
+   top: 0;
+   opacity: 1;
+   width: 90%;
+   height: 52%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(0,0,0,0.4);
+   margin: 16px;
+}
+
+.completed-overlay button {
+   border-radius: 25px;
+   border: 2px solid white;
+   color: white;
+   background-color: rgb(46 46 46);
+   padding: 5px 15px;
+   opacity: 0.8;
+   width: 60%;
 }

@@ -1,5 +1,5 @@
 <div class="report-container">
     <ng-container *ngFor="let report of _reports; let i = index">
-        <app-card [_index]="i" [_report]="report"></app-card>
+        <app-card [_index]="i" [_report]="report" (markCompletedEvent)="markCompleted($event)"></app-card>
     </ng-container>
 </div>

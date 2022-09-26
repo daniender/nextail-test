@@ -14,9 +14,13 @@ export class HomeComponent implements OnInit {
   constructor(private _reportsService: ReportsService) { }
 
   ngOnInit(): void {
-    this._reportsService.get().subscribe(resp => {
+    this._reportsService.getReports().then(resp => {
       this._reports = resp;
     });
+  }
+
+  markCompleted(code: number) {
+    this._reportsService.markCompleted(code);
   }
 
 }
