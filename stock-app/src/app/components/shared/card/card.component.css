@@ -6,6 +6,7 @@
 .report-card {
    float: left;
    margin-bottom: 5vh;
+   width: 350px;
 }
 
 .report-card-header {
@@ -71,8 +72,8 @@
    left: 0;
    top: 0;
    opacity: 1;
-   width: 90%;
-   height: 52%;
+   width: 300px;
+   height: 450px;
    display: flex;
    align-items: center;
    justify-content: center;

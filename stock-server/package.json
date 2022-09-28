@@ -1,5 +1,5 @@
 {
-  "name": "stock-server",
+  "name": "report-server",
   "version": "1.0.0",
   "description": "Node API for stock report app",
   "main": "server.js",

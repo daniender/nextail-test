@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom, map } from 'rxjs';
+import { lastValueFrom, Observable, of, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Report } from '../models/Report';
 import { SocketService } from './websocket/socket.service';
@@ -10,25 +10,23 @@ import { SocketService } from './websocket/socket.service';
 })
 export class ReportsService {
 
-  reports: Report[] = [];
+  reports$: Subject<Report[]> = new Subject();
 
-  constructor(private _httpClient: HttpClient, private _socketService: SocketService) {
+  constructor(
+    private _httpClient: HttpClient,
+    private _socketService: SocketService
+  ) {
     this._socketService.receive('reports').subscribe(resp => {
-      this.reports = resp;
+      this.reports$.next(resp);
     });
   }
 
-  async getReports() {
-    await firstValueFrom(this._httpClient.get<Report[]>(environment.apiUrl.concat('/reports'))
-      .pipe(
-        map(
-          resp => this.reports = resp
-        )
-      ));
-    return this.reports;
+  reloadReports(): void {
+    this._httpClient.get<Report[]>(environment.apiUrl.concat('/reload'))
+      .subscribe(resp => this.reports$.next(resp));
   }
 
-  markCompleted(code: number) {
+  markCompleted(code: number): void {
     const payload = {
       code: code
     };

@@ -11,12 +11,15 @@ export class HomeComponent implements OnInit {
 
   _reports: Report[] = [];
 
-  constructor(private _reportsService: ReportsService) { }
+  constructor(
+    private _reportsService: ReportsService
+  ) { }
 
   ngOnInit(): void {
-    this._reportsService.getReports().then(resp => {
-      this._reports = resp;
+    this._reportsService.reports$.subscribe(resp => {
+      this._reports = resp
     });
+    this._reportsService.reloadReports();
   }
 
   markCompleted(code: number) {

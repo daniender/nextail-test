@@ -1,14 +1,12 @@
 import { Router, Request, Response } from 'express';
 import { ReportService } from '../services/report.service';
 
-
-const service = new ReportService();
+/** API controller to expose rest endpoints */
+const service = ReportService.instance;
 const router = Router();
 
-router.get('/reports', (req: Request, resp: Response) => {
-    service.getReports().then(response => {
-        return resp.json(response);
-    });
+router.get('/reload', (req: Request, resp: Response) => {
+    return resp.json(service.reload());
 });
 
 export default router;

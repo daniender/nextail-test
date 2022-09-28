@@ -18,6 +18,11 @@
         </div>
         <div class="report-graph">
             <!-- TODO add graph -->
+            <canvas baseChart width="400" height="200" 
+                [data]="reportData(_report)" 
+                [options]="barChartOptions"
+                type="bar">
+            </canvas>
         </div>
         <mat-divider class="divider"></mat-divider>
         <div class="report-stock mt-4">

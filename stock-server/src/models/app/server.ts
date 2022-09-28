@@ -5,7 +5,7 @@ import http from 'http';
 import { SERVER_PORT } from '../../global/environmnent';
 import { ReportService } from '../../services/report.service';
 
-
+/** server class to start api controller and socket connection */
 export default class Server {
 
     private static _instance: Server;
@@ -27,7 +27,7 @@ export default class Server {
                 credentials: true
             }
         });
-        this.reportService = new ReportService();
+        this.reportService = ReportService.instance;
         this.listenSockets();
     }
 
@@ -41,14 +41,16 @@ export default class Server {
 
     private listenSockets() {
         console.log('Listening to socket connections');
-        this.io.on('connection', client => {
-            console.log('Client connected', client.id);
-        });
 
-        this.io.on('confirm', (payload: { code: number }) => {
-            console.log('Report confirmed', payload.code);
-            this.reportService.markConfirmed(payload.code);
-            this.io.emit('reports', this.reportService.reports);
+        this.io.on('connection', client => {
+
+            console.log('Client connected', client.id);
+
+            client.on('confirm', (code: number) => {
+                console.log('Report confirmed', code);
+                this.reportService.markConfirmed(code);
+                this.io.emit('reports', this.reportService.getReports());
+            });
         });
     }
 }
