@@ -19,10 +19,20 @@ Then compile project with TypeScriptCompiler, execute from the project root:
 $ tsc
 ```
 
-### Run:
+## Run:
 
 Run compiled code with node:
 ```
 ~ stock-server/ 
 $ node dist/
 ```
+
+### Run with docker
+
+Start Docker service and create image:
+```
+docker build - report-server .
+```
+
+Launch image with port 5000.
+

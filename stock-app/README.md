@@ -12,9 +12,18 @@
 
 Download the code and run `npm install` from project root to install dependencies.
 
-### Run:
+## Run:
 
 Run either with `ng serve` or `npm run-script start`.
 
-Application can also be packaged with `ng build` and served from existing Apache2/Nginx running services.
+### Run with docker
+
+Create dist/ with `ng build`.
+
+Start Docker service and create image:
+```
+docker build - report-app .
+```
+
+Launch image with port 4200. Open web browser on `http://localhost:4200`
 

@@ -1,14 +1,15 @@
 FROM node:18.9.1-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /usr/share/node
 
-COPY package*.json ./
+COPY index.ts ./
+COPY package.json ./
+COPY tsconfig.json ./
+COPY src ./src
 
 RUN npm install
-
+RUN npm install -g typescript
 RUN tsc
-
-COPY dist/ .
 
 EXPOSE 5000
 
